@@ -9,6 +9,11 @@ import UIKit
 
 class AllFriendsTableVC: UITableViewController {
     
+    @IBOutlet var searchBar: UISearchBar!
+    
+    var searchActiv = false
+    var filtredName = [String]()
+    
     struct Section {
         let letter : String
         let names : [String]
@@ -19,6 +24,10 @@ class AllFriendsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
         
         let groupedDictionary = Dictionary(grouping: userSecondName, by: {String($0.prefix(1))})
         let keys = groupedDictionary.keys.sorted()
@@ -38,32 +47,21 @@ class AllFriendsTableVC: UITableViewController {
             return UITableViewCell()
         }
         
-        
-        let section = sections[indexPath.section]
-        let username = section.names[indexPath.row]
-        
-        for name in friendsModelArrey {
-            if name.secondName == username {
-                cell.configure(foto: name.logo, name: name.fullName)
+        if searchActiv {
+            let name = friendsModelArrey[indexPath.row]
+            cell.configure(foto: name.logo, name: name.fullName)
+        } else {
+            let section = sections[indexPath.section]
+            let username = section.names[indexPath.row]
+                    
+            for name in friendsModelArrey {
+                if name.secondName == username {
+                    cell.configure(foto: name.logo, name: name.fullName)
+                }
             }
         }
         
         
-        
-        //cell.textLabel?.text = username
-        
-//        for name in filtredModArrey {
-//
-//            let currentFriendAcc = filtredModArrey[indexPath.row]
-//
-//            if name.secondName == username {
-//            cell.configure(foto: currentFriendAcc.logo, name: currentFriendAcc.fullName)
-//
-//                print(username)
-//                print(currentFriendAcc.fullName)
-//
-//            }
-//        }
         
         cell.friendsFoto.layer.borderWidth = 2
         cell.friendsFoto.layer.borderColor = UIColor.black.cgColor
@@ -75,7 +73,12 @@ class AllFriendsTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sections[section].names.count
+        if searchActiv {
+            return filtredName.count
+        } else {
+            return sections[section].names.count
+        }
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -105,56 +108,22 @@ class AllFriendsTableVC: UITableViewController {
                 withIdentifier: "friendFotoSegue",
                 sender: nil)
         }
+}
+
+extension AllFriendsTableVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filtredName = friendsModelArrey.map{$0.secondName}.filter({ return $0.lowercased().contains(searchText.lowercased()) })
+                if(filtredName.count == 0){
+                    searchActiv = false;
+                } else {
+                    searchActiv = true;
+                }
+                self.tableView.reloadData()
+    }
     
-//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        defer {
-//            tableView.deselectRow(at: indexPath, animated: true)
-//        }
-//        performSegue(withIdentifier: "friendFotoSegue", sender: nil)
-//    }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -113,7 +113,7 @@
             </objects>
             <point key="canvasLocation" x="793" y="200"/>
         </scene>
-        <!--Friends-->
+        <!--My friends-->
         <scene sceneID="jR5-tW-sGb">
             <objects>
                 <tableViewController id="2r4-9j-u9a" customClass="AllFriendsTableVC" customModule="VKClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -121,14 +121,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="DBk-BC-Cbc">
+                            <rect key="frame" x="0.0" y="0.0" width="428" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="2r4-9j-u9a" id="XEM-D3-dDg"/>
+                            </connections>
+                        </searchBar>
                         <sections/>
                         <connections>
                             <outlet property="dataSource" destination="2r4-9j-u9a" id="bFp-qz-WSb"/>
                             <outlet property="delegate" destination="2r4-9j-u9a" id="JV0-V0-OKF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="23X-Cf-Ti0"/>
+                    <navigationItem key="navigationItem" title="My friends" id="23X-Cf-Ti0"/>
                     <connections>
+                        <outlet property="searchBar" destination="DBk-BC-Cbc" id="vPK-MV-qJv"/>
                         <segue destination="WI0-Po-ddy" kind="show" identifier="friendFotoSegue" id="0cn-pK-kqH"/>
                     </connections>
                 </tableViewController>
@@ -136,7 +145,7 @@
             </objects>
             <point key="canvasLocation" x="3685.5140186915887" y="-235.20518358531319"/>
         </scene>
-        <!--Groups-->
+        <!--My groups-->
         <scene sceneID="aMJ-Do-VBY">
             <objects>
                 <tableViewController id="8uT-OC-xnl" customClass="GroupsTableVC" customModule="VKClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -150,8 +159,8 @@
                             <outlet property="delegate" destination="8uT-OC-xnl" id="PMC-p9-HDK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Groups" id="bVC-E2-WSs">
-                        <barButtonItem key="rightBarButtonItem" title="item" image="magnifyingglass" catalog="system" id="2d9-rU-Mka">
+                    <navigationItem key="navigationItem" title="My groups" id="bVC-E2-WSs">
+                        <barButtonItem key="rightBarButtonItem" title="Add group" id="2d9-rU-Mka">
                             <connections>
                                 <segue destination="qRJ-2E-StC" kind="show" identifier="goToSearch" id="141-ns-dde"/>
                             </connections>
@@ -271,7 +280,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="labelColor">

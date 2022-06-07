@@ -9,11 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendsCell" rowHeight="128" id="jg4-aK-fFj" customClass="FriendsCell" customModule="VKClient" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="387" height="128"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendsCell" rowHeight="100" id="jg4-aK-fFj" customClass="FriendsCell" customModule="VKClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jg4-aK-fFj" id="vgE-di-mhU">
-                <rect key="frame" x="0.0" y="0.0" width="387" height="128"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUz-JU-1ex" customClass="AvatarBackShadow" customModule="VKClient" customModuleProvider="target">
@@ -51,12 +51,13 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2f-Zt-lw5">
-                        <rect key="frame" x="110" y="46" width="267" height="24"/>
+                        <rect key="frame" x="110" y="46" width="273" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.6889680027961731" green="0.83388316631317139" blue="0.93096500635147095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="tUz-JU-1ex" secondAttribute="bottom" constant="20" id="Cik-Ce-YzP"/>
                     <constraint firstItem="H2f-Zt-lw5" firstAttribute="top" secondItem="vgE-di-mhU" secondAttribute="top" constant="46" id="KNt-FP-PqJ"/>
@@ -71,7 +72,7 @@
                 <outlet property="friendsFoto" destination="tOg-S8-v6o" id="F8P-UJ-6GJ"/>
                 <outlet property="friendsName" destination="H2f-Zt-lw5" id="rMY-7I-zrn"/>
             </connections>
-            <point key="canvasLocation" x="142.75362318840581" y="-87.053571428571431"/>
+            <point key="canvasLocation" x="138.40579710144928" y="-98.4375"/>
         </tableViewCell>
     </objects>
     <resources>
